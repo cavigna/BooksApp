@@ -11,6 +11,12 @@ data class BookJson(
     @SerializedName("totalItems")
     val totalItems: Int,
 
+
+
+
+
+
+
     // AGREGADO
 
     @SerializedName("allowAnonLogging")

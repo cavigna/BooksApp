@@ -1,5 +1,6 @@
 package com.example.booksv1
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,11 +15,13 @@ import com.example.booksv1.databinding.ActivityMainBinding
 import com.example.booksv1.jsonmodels.BookJson
 import kotlinx.coroutines.launch
 import java.util.*
-
-class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
+//BookAdapter.OnBookClick
+class MainActivity : AppCompatActivity(),SearchView.OnQueryTextListener
+{
     private lateinit var binding: ActivityMainBinding
     private lateinit var bookAdapter: BookAdapter
     private var busqueda: String? = null
+    private lateinit var resultado : BookJson
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -48,6 +51,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
                 //Log.v("Libros", response.body().toString())
                 Log.v("Pedido", response.raw().toString())
                 recyclerInit(data)
+                resultado = data
 
             }
         }
@@ -64,8 +68,19 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     override fun onQueryTextChange(newText: String?): Boolean {
         return true
     }
+
+
+//    override fun onCardClick(item: String, thumbnail: String) {
+//        val intent = Intent(this, Detalles::class.java)
+//        //intent.put.putExtra("algo", resultado)
+//        startActivity(intent)
+//    }
 }
 
+//git branch -m master main
+//git fetch origin
+//git branch -u origin/main main
+//git remote set-head origin -a
 
 /*
 package com.example.booksv1
