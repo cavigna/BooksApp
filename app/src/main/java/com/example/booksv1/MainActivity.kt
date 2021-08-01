@@ -1,18 +1,15 @@
 package com.example.booksv1
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.SearchView
-import androidx.appcompat.widget.LinearLayoutCompat
 //import androidx.appcompat.widget.SearchView
-import androidx.compose.ui.text.toLowerCase
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.booksv1.RetrofitInstance.retroService
+import com.example.booksv1.retrofit.RetrofitInstance.retroService
 import com.example.booksv1.databinding.ActivityMainBinding
-import com.example.booksv1.jsonmodels.BookJson
+import com.example.booksv1.jsonmodels.modellong.BookJson
 import kotlinx.coroutines.launch
 import java.util.*
 //BookAdapter.OnBookClick
@@ -30,6 +27,9 @@ class MainActivity : AppCompatActivity(),SearchView.OnQueryTextListener
         setContentView(binding.root)
         binding.searchView.setOnQueryTextListener(this)
 
+        imprimir("aleph")
+       // otromas()
+
 
     }
 
@@ -45,11 +45,31 @@ class MainActivity : AppCompatActivity(),SearchView.OnQueryTextListener
             val data = response.body()!!
 
             if (response.isSuccessful){
-                Log.v("Libros", response.body().toString())
-                Log.v("Pedido", response.raw().toString())
+                //Log.v("Libros", response.body().toString())
+                //Log.v("Pedido", response.raw().toString())
                 recyclerInit(data)
                 resultado = data
 
+            }
+        }
+    }
+
+    private fun imprimir(palabra: String){
+        lifecycleScope.launch{
+            val response = retroService.searchByQuery(palabra)
+            val data = response.body()!!
+
+            if(response.isSuccessful){
+                Log.v("Libros", response.body().toString())
+            }
+        }
+    }
+
+    private fun otromas(){
+        lifecycleScope.launch {
+            val respuesta = retroService.otroMas()
+            if (respuesta.isSuccessful){
+                Log.v("Otro Mas: ", respuesta.body().toString())
             }
         }
     }
@@ -86,7 +106,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
-import com.example.booksv1.RetrofitInstance.retroService
+import com.example.booksv1.retrofit.RetrofitInstance.retroService
 import com.example.booksv1.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
 

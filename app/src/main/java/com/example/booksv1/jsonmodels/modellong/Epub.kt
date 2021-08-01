@@ -1,4 +1,4 @@
-package com.example.booksv1.jsonmodels
+package com.example.booksv1.jsonmodels.modellong
 
 
 import com.google.gson.annotations.SerializedName

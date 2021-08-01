@@ -1,28 +1,15 @@
-package com.example.booksv1.jsonmodels
+package com.example.booksv1.jsonmodels.modellong
 
 
 import com.google.gson.annotations.SerializedName
 
-data class BookJson(
-    @SerializedName("items")
-    val items: List<Item>,
-    @SerializedName("kind")
-    val kind: String,
-    @SerializedName("totalItems")
-    val totalItems: Int,
-
-
-
-
-
-
-
-    // AGREGADO
-
+data class VolumeInfo(
     @SerializedName("allowAnonLogging")
     val allowAnonLogging: Boolean,
+
     @SerializedName("authors")
     val authors: List<String>,
+
     @SerializedName("averageRating")
     val averageRating: Double,
     @SerializedName("canonicalVolumeLink")
@@ -31,10 +18,13 @@ data class BookJson(
     val categories: List<String>,
     @SerializedName("contentVersion")
     val contentVersion: String,
+
     @SerializedName("description")
     val description: String,
+
     @SerializedName("imageLinks")
     val imageLinks: ImageLinks,
+
     @SerializedName("industryIdentifiers")
     val industryIdentifiers: List<IndustryIdentifier>,
     @SerializedName("infoLink")

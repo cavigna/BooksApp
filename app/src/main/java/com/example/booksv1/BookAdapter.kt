@@ -3,11 +3,10 @@ package com.example.booksv1
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.booksv1.databinding.RowItemBinding
-import com.example.booksv1.jsonmodels.BookJson
+import com.example.booksv1.jsonmodels.modellong.BookJson
 import java.lang.NullPointerException
 
 class BookAdapter(var books: BookJson) : RecyclerView.Adapter<BookAdapter.BookViewHolder>() {

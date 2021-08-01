@@ -1,9 +1,9 @@
-package com.example.booksv1.jsonmodels
+package com.example.booksv1.jsonmodels.modellong
 
 
 import com.google.gson.annotations.SerializedName
 
-data class ListPriceX(
+data class RetailPrice(
     @SerializedName("amountInMicros")
     val amountInMicros: Long,
     @SerializedName("currencyCode")
