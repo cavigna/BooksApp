@@ -13,14 +13,23 @@ class Detalles : AppCompatActivity() {
         binding = ActivityDetallesBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.apply {
-            binding.textViewDetallesDescripcion.text = intent.getStringExtra("detalle").toString()
+
             try{
+                textViewDetallesDescripcion.text = intent.getStringExtra("detalle").toString()
+                textViewDetallesAutor.text = intent.getStringExtra("autor").toString()
+                textViewDetallesTitulo.text = intent.getStringExtra("titulo").toString()
+                textViewDetallesYear.text = intent.getStringExtra("year").toString()
+
                 Glide.with(imageViewDetalles.context)
                     .load(intent.getStringExtra("imagen"))
                     .fitCenter()
                     .into(imageViewDetalles)
 
             }catch (e:NullPointerException){
+                imageViewDetalles.setImageResource(R.drawable.noimage)
+                textViewDetallesDescripcion.text = "No info"
+
+
 
             }
         }

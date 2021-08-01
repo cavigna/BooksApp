@@ -31,9 +31,6 @@ class MainActivity : AppCompatActivity(),SearchView.OnQueryTextListener
         binding.searchView.setOnQueryTextListener(this)
 
 
-
-
-
     }
 
     private fun recyclerInit(books : BookJson) = binding.recyclerView.apply {
@@ -48,7 +45,7 @@ class MainActivity : AppCompatActivity(),SearchView.OnQueryTextListener
             val data = response.body()!!
 
             if (response.isSuccessful){
-                //Log.v("Libros", response.body().toString())
+                Log.v("Libros", response.body().toString())
                 Log.v("Pedido", response.raw().toString())
                 recyclerInit(data)
                 resultado = data

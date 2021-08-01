@@ -10,10 +10,7 @@ import com.example.booksv1.databinding.RowItemBinding
 import com.example.booksv1.jsonmodels.BookJson
 import java.lang.NullPointerException
 
-class BookAdapter(
-    var books: BookJson
-
-) : RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
+class BookAdapter(var books: BookJson) : RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
 
 //val itemClickListener: OnBookClick
     inner class BookViewHolder(val binding: RowItemBinding) : RecyclerView.ViewHolder(binding.root)
@@ -37,22 +34,27 @@ class BookAdapter(
             var autores = books.items[position].volumeInfo.authors
             tvtitulo.text = books.items[position].volumeInfo.title
             //tvautor.text = autores.joinToString { it.toString() }
-            tvautor.text = autores[0]
-            tvaO.text = books.items[position].volumeInfo.publishedDate
+            //tvautor.text = autores[0]
 
             try {
+                tvtitulo.text = books.items[position].volumeInfo.title
+                tvautor.text = autores[0]
+                tvaO.text = books.items[position].volumeInfo.publishedDate
+
                 Glide.with(imageViewBook.context)
                     .load(books.items[position].volumeInfo.imageLinks.thumbnail)
                     .fitCenter()
                     .error(R.drawable.ic_launcher_foreground)
                     .into(imageViewBook)
-            } catch (e: NullPointerException) {
-                imageViewBook.setImageResource(R.drawable.noimage)
-            }
 
-//            holder.binding.cardBook.setOnClickListener {
-//                //val intent = Intent(this, Detalles::class.java)
-//            }
+
+            }catch (e: NullPointerException){
+                tvtitulo.text = "No Info"
+                tvautor.text = "No Info"
+                tvaO.text = "No Info"
+                imageViewBook.setImageResource(R.drawable.noimage)
+
+            }
 
             holder.binding.cardBook.setOnClickListener {
                 //holder.binding.imageViewBook.context.startActivity()
@@ -60,15 +62,14 @@ class BookAdapter(
                 val intento = Intent(context, Detalles::class.java)
                 intento.putExtra("detalle",books.items[position].volumeInfo.description )
                 intento.putExtra("imagen", books.items[position].volumeInfo.imageLinks.thumbnail)
+                intento.putExtra("autor", books.items[position].volumeInfo.authors[0])
+                intento.putExtra("year", books.items[position].volumeInfo.publishedDate)
+                intento.putExtra("titulo", books.items[position].volumeInfo.title)
                 context.startActivity(intento)
             }
 
 
-//            cardBook.setOnClickListener {
-//                itemClickListener.onCardClick(
-//                    books.items[position].volumeInfo.description,
-//                books.items[position].volumeInfo.imageLinks.thumbnail) }
-//
+
         }
     }
 
