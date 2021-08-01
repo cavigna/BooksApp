@@ -27,7 +27,7 @@ class Detalles : AppCompatActivity() {
 
             }catch (e:NullPointerException){
                 imageViewDetalles.setImageResource(R.drawable.noimage)
-                textViewDetallesDescripcion.text = "No info"
+                textViewDetallesDescripcion.text = "No info "
 
 
 
