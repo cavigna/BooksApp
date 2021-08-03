@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.SearchView
+import androidx.lifecycle.ViewModelProvider
 //import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.booksv1.retrofit.RetrofitInstance.retroService
 import com.example.booksv1.databinding.ActivityMainBinding
 import com.example.booksv1.jsonmodels.modellong.BookJson
+import com.example.booksv1.repository.BookRepository
+import com.example.booksv1.viewmodel.BookViewModel
 import kotlinx.coroutines.launch
 import java.util.*
 //BookAdapter.OnBookClick
@@ -20,6 +23,9 @@ class MainActivity : AppCompatActivity(),SearchView.OnQueryTextListener
     private var busqueda: String? = null
     private lateinit var resultado : BookJson
 
+    private lateinit var viewModel: BookViewModel
+    private lateinit var repository: BookRepository
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -27,8 +33,11 @@ class MainActivity : AppCompatActivity(),SearchView.OnQueryTextListener
         setContentView(binding.root)
         binding.searchView.setOnQueryTextListener(this)
 
-        imprimir("aleph")
-       // otromas()
+
+        repository = BookRepository(retroService)
+        val factory = BookViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, factory).get(BookViewModel::class.java)
+        otromas("El Aleph")
 
 
     }
@@ -54,24 +63,19 @@ class MainActivity : AppCompatActivity(),SearchView.OnQueryTextListener
         }
     }
 
-    private fun imprimir(palabra: String){
-        lifecycleScope.launch{
-            val response = retroService.searchByQuery(palabra)
-            val data = response.body()!!
 
-            if(response.isSuccessful){
-                Log.v("Libros", response.body().toString())
-            }
-        }
-    }
 
-    private fun otromas(){
-        lifecycleScope.launch {
-            val respuesta = retroService.otroMas()
-            if (respuesta.isSuccessful){
-                Log.v("Otro Mas: ", respuesta.body().toString())
-            }
+
+
+    private fun otromas(busqueda:String){
+        viewModel.librosPorBusqueda(busqueda)
+        viewModel.librosMutableLiveData.observe(this){
+            Log.v("fafafa", viewModel.librosMutableLiveData.value.toString())
         }
+
+
+
+
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
@@ -86,6 +90,16 @@ class MainActivity : AppCompatActivity(),SearchView.OnQueryTextListener
         return true
     }
 
+
+    /*
+        override fun onQueryTextSubmit(query: String?): Boolean {
+        if(!query.isNullOrEmpty()){
+            busqueda = query.lowercase(Locale.getDefault())
+            getBookByName(busqueda!!)
+        }
+        return true
+    }
+     */
 
 //    override fun onCardClick(item: String, thumbnail: String) {
 //        val intent = Intent(this, Detalles::class.java)
@@ -151,4 +165,28 @@ class MainActivity : AppCompatActivity() {
 //
 //            }
 //        }
+ */
+
+/*
+viewModel.librosLiveData.observe(this){
+            Log.v("rompedor", viewModel.librosLiveData.toString())
+            lifecycleScope.launchWhenCreated {
+                viewModel.librosPorNombre("Sinsajo")
+                Log.v("rompedor", viewModel.librosLiveData.toString())
+            }
+
+        }
+ */
+
+/*
+    private fun imprimir(palabra: String){
+        lifecycleScope.launch{
+            val response = retroService.searchByQuery(palabra)
+            val data = response.body()!!
+
+            if(response.isSuccessful){
+                Log.v("Libros", response.body().toString())
+            }
+        }
+    }
  */
