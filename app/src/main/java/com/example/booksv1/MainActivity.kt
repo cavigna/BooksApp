@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.SearchView
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 
@@ -13,12 +12,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.booksv1.retrofit.RetrofitInstance.retroService
 import com.example.booksv1.databinding.ActivityMainBinding
 import com.example.booksv1.jsonmodels.modellong.BookJson
-import com.example.booksv1.jsonmodels.modelshort.BookModelJson
 import com.example.booksv1.repository.BookRepository
+import com.example.booksv1.ui.adapters.BookAdapter
 import com.example.booksv1.viewmodel.BookViewModel
 import com.example.booksv1.viewmodel.LibroAdapter
 import com.example.booksv1.viewmodel.LibroAdapter2
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -45,6 +43,8 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         repository = BookRepository(retroService)
         val factory = BookViewModelFactory(repository)
         viewModel = ViewModelProvider(this, factory).get(BookViewModel::class.java)
+
+        nyTry()
 
 
     }
@@ -93,6 +93,13 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     }
 
+    private fun nyTry(){
+        viewModel.bestSellers()
+        viewModel.bestSellersLiveData.observe(this){
+            Log.v("fafafa", viewModel.bestSellersLiveData.value.toString())
+        }
+    }
+
 
 
 
@@ -119,6 +126,13 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
 
     }
+
+    /*
+     private fun hideKeyboard() {
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(binding.viewRoot.windowToken, 0)
+    }
+     */
 }
 
 /*

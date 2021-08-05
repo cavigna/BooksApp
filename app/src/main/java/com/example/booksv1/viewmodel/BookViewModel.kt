@@ -1,6 +1,7 @@
 package com.example.booksv1.viewmodel
 
 import androidx.lifecycle.*
+import com.example.booksv1.jsonmodels.modelbestseller.BookNYModel
 import com.example.booksv1.jsonmodels.modelshort.BookModelJson
 import com.example.booksv1.repository.BookRepository
 import kotlinx.coroutines.Dispatchers
@@ -15,12 +16,23 @@ class BookViewModel(val repository: BookRepository) : ViewModel() {
 
     val librosMutableLiveData: LiveData<BookModelJson?> get() = _librosMutableLiveData
 
+    private  var _bestSellersMutableLD: MutableLiveData<BookNYModel?> =
+        MutableLiveData<BookNYModel?>()
+
+    val bestSellersLiveData : LiveData<BookNYModel?> get() = _bestSellersMutableLD
+
 
 
     fun librosPorBusqueda(busqueda: String) {
         viewModelScope.launch(IO) {
             _librosMutableLiveData.postValue(repository.librosPorBusqueda(busqueda))
 
+        }
+    }
+
+    fun bestSellers(){
+        viewModelScope.launch(IO) {
+            _bestSellersMutableLD.postValue(repository.bestSellers())
         }
     }
 

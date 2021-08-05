@@ -2,8 +2,10 @@ package com.example.booksv1.repository
 
 import android.util.Log
 import com.example.booksv1.retrofit.RetroService
+import com.example.booksv1.retrofit.RetroServiceNy
 
 class BookRepository(val retroService: RetroService) {
+
     suspend fun searchByQuery() = retroService.searchByQuery()
     suspend fun librosPorNombre(palabra:String) = retroService.librosPorNombre(palabra)
 
@@ -11,17 +13,8 @@ class BookRepository(val retroService: RetroService) {
 
     suspend fun librosPorBusqueda(busqueda: String) = retroService.librosPorBusqueda(busqueda).body()
 
-//    suspend fun librosPorBusqueda(busqueda: String) {
-//        Log.v("Pedido", retroService.librosPorBusqueda(busqueda).raw().toString())
-//        retroService.librosPorBusqueda(busqueda).body()
-//
-//    }
+    suspend fun bestSellers() = retroService.bestSellers().body()
 
 
 }
 
-//    suspend fun librosPorNombrePrueba(busqueda: String){
-//        val request = retroService.librosPorNombre(busqueda)
-//        if (request.)
-//    }
-//suspend fun searchByName() = retroService.searchByName()

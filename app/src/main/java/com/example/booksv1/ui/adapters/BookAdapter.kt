@@ -1,10 +1,13 @@
-package com.example.booksv1
+package com.example.booksv1.ui.adapters
 
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.booksv1.BookViewHolder
+import com.example.booksv1.Detalles
+import com.example.booksv1.R
 import com.example.booksv1.databinding.RowItemBinding
 import com.example.booksv1.jsonmodels.modellong.BookJson
 import java.lang.NullPointerException

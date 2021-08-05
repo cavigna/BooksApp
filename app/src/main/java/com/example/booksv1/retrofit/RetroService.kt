@@ -2,20 +2,27 @@ package com.example.booksv1.retrofit
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.booksv1.jsonmodels.modelbestseller.BookNYModel
 import com.example.booksv1.jsonmodels.modellong.BookJson
 import com.example.booksv1.jsonmodels.modelshort.BookModelJson
 import com.example.booksv1.jsonmodels.modelshort.Books
 import com.example.booksv1.jsonmodels.modelshort.ListadoLibros
 import com.example.booksv1.jsonmodels.modelshort.OtroMas
+import com.example.booksv1.utils.Credenciales
+import com.example.booksv1.utils.Credenciales.BASE2 as base
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
+import retrofit2.http.Url
 
 interface RetroService {
 
     @GET("volumes")
     suspend fun librosPorBusqueda(@Query ("q", encoded = true) palabra:String) :
             Response<BookModelJson?>
+
+    @GET("$base")
+    suspend fun bestSellers(): Response<BookNYModel?>
 
 
     @GET("volumes")
