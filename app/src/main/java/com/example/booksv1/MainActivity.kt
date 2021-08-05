@@ -4,27 +4,35 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.SearchView
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
-//import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.lifecycleScope
+
+//import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.booksv1.retrofit.RetrofitInstance.retroService
 import com.example.booksv1.databinding.ActivityMainBinding
 import com.example.booksv1.jsonmodels.modellong.BookJson
+import com.example.booksv1.jsonmodels.modelshort.BookModelJson
 import com.example.booksv1.repository.BookRepository
 import com.example.booksv1.viewmodel.BookViewModel
+import com.example.booksv1.viewmodel.LibroAdapter
+import com.example.booksv1.viewmodel.LibroAdapter2
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.*
+
 //BookAdapter.OnBookClick
-class MainActivity : AppCompatActivity(),SearchView.OnQueryTextListener
-{
+class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     private lateinit var binding: ActivityMainBinding
     private lateinit var bookAdapter: BookAdapter
     private var busqueda: String? = null
-    private lateinit var resultado : BookJson
 
     private lateinit var viewModel: BookViewModel
     private lateinit var repository: BookRepository
+
+    private lateinit var libroAdapter: LibroAdapter
+    private lateinit var libroAdapter2: LibroAdapter2
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -37,27 +45,28 @@ class MainActivity : AppCompatActivity(),SearchView.OnQueryTextListener
         repository = BookRepository(retroService)
         val factory = BookViewModelFactory(repository)
         viewModel = ViewModelProvider(this, factory).get(BookViewModel::class.java)
-        otromas("El Aleph")
 
 
     }
 
-    private fun recyclerInit(books : BookJson) = binding.recyclerView.apply {
+    private fun recyclerInit(books: BookJson) = binding.recyclerView.apply {
         bookAdapter = BookAdapter(books)
         adapter = bookAdapter
         layoutManager = LinearLayoutManager(this@MainActivity)
     }
 
-    private fun getBookByName(palabra : String){
-        lifecycleScope.launch{
+
+
+    private fun getBookByName(palabra: String) {
+        lifecycleScope.launch {
             val response = retroService.searchByName(palabra)
             val data = response.body()!!
 
-            if (response.isSuccessful){
-                //Log.v("Libros", response.body().toString())
+            if (response.isSuccessful) {
+
                 //Log.v("Pedido", response.raw().toString())
                 recyclerInit(data)
-                resultado = data
+
 
             }
         }
@@ -65,23 +74,35 @@ class MainActivity : AppCompatActivity(),SearchView.OnQueryTextListener
 
 
 
+    private fun initRecycler(busqueda: String) {
 
-
-    private fun otromas(busqueda:String){
         viewModel.librosPorBusqueda(busqueda)
-        viewModel.librosMutableLiveData.observe(this){
-            Log.v("fafafa", viewModel.librosMutableLiveData.value.toString())
+        viewModel.librosMutableLiveData.observe(this) {
+
+            binding.recyclerView.apply {
+
+                libroAdapter2 = LibroAdapter2(viewModel.librosMutableLiveData.value!!)
+                layoutManager = LinearLayoutManager(this@MainActivity)
+                adapter = libroAdapter2
+                adapter?.notifyDataSetChanged()
+                 //Log.v("fafafa", viewModel.librosMutableLiveData.value.toString())
+                //Log.v("Pedido", response.raw().toString())
+            }
         }
-
-
 
 
     }
 
+
+
+
     override fun onQueryTextSubmit(query: String?): Boolean {
-        if(!query.isNullOrEmpty()){
+        if (!query.isNullOrEmpty()) {
             busqueda = query.lowercase(Locale.getDefault())
-            getBookByName(busqueda!!)
+            //getBookByName(busqueda!!)
+
+            initRecycler(busqueda!!)
+
         }
         return true
     }
@@ -90,23 +111,32 @@ class MainActivity : AppCompatActivity(),SearchView.OnQueryTextListener
         return true
     }
 
-
-    /*
-        override fun onQueryTextSubmit(query: String?): Boolean {
-        if(!query.isNullOrEmpty()){
-            busqueda = query.lowercase(Locale.getDefault())
-            getBookByName(busqueda!!)
+    fun otromas(busqueda: String) {
+        viewModel.librosPorBusqueda(busqueda)
+        viewModel.librosMutableLiveData.observe(this) {
+            Log.v("fafafa", viewModel.librosMutableLiveData.value.toString())
         }
-        return true
+
+
     }
-     */
+}
+
+/*
+    override fun onQueryTextSubmit(query: String?): Boolean {
+    if(!query.isNullOrEmpty()){
+        busqueda = query.lowercase(Locale.getDefault())
+        getBookByName(busqueda!!)
+    }
+    return true
+}
+ */
 
 //    override fun onCardClick(item: String, thumbnail: String) {
 //        val intent = Intent(this, Detalles::class.java)
 //        //intent.put.putExtra("algo", resultado)
 //        startActivity(intent)
 //    }
-}
+
 
 //git branch -m master main
 //git fetch origin

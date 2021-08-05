@@ -9,16 +9,18 @@ import kotlinx.coroutines.launch
 import retrofit2.Response
 
 class BookViewModel(val repository: BookRepository) : ViewModel() {
-    var _librosMutableLiveData: MutableLiveData<BookModelJson?> =
+    private var _librosMutableLiveData: MutableLiveData<BookModelJson?> =
         MutableLiveData<BookModelJson?>() //==> Esto solo es una abstracción para que el observer solo
     //interactue con el getter de abajo
 
     val librosMutableLiveData: LiveData<BookModelJson?> get() = _librosMutableLiveData
 
 
+
     fun librosPorBusqueda(busqueda: String) {
         viewModelScope.launch(IO) {
             _librosMutableLiveData.postValue(repository.librosPorBusqueda(busqueda))
+
         }
     }
 

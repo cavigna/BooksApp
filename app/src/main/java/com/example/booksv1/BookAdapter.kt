@@ -9,14 +9,11 @@ import com.example.booksv1.databinding.RowItemBinding
 import com.example.booksv1.jsonmodels.modellong.BookJson
 import java.lang.NullPointerException
 
-class BookAdapter(var books: BookJson) : RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
+class BookAdapter(var books: BookJson) : RecyclerView.Adapter<BookViewHolder>() {
 
-//val itemClickListener: OnBookClick
-    inner class BookViewHolder(val binding: RowItemBinding) : RecyclerView.ViewHolder(binding.root)
 
-//    interface OnBookClick {
-//        fun onCardClick(item: String, thumbnail: String)
-//    }
+    //inner class BookViewHolder(val binding: RowItemBinding) : RecyclerView.ViewHolder(binding.root)
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
         return BookViewHolder(

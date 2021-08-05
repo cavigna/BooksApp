@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName
 data class BookModelJson(@SerializedName("items")val listado: List<ListadoLibros>)
 
 data class ListadoLibros(
+    @SerializedName("id")
+    val id: String,
+
     @SerializedName("volumeInfo")
     val info: Books
 )

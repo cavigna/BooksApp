@@ -1,5 +1,6 @@
 package com.example.booksv1.repository
 
+import android.util.Log
 import com.example.booksv1.retrofit.RetroService
 
 class BookRepository(val retroService: RetroService) {
@@ -9,6 +10,12 @@ class BookRepository(val retroService: RetroService) {
     suspend fun librosPorLiveData(busqueda: String) = retroService.librosConLiveData(busqueda).body()
 
     suspend fun librosPorBusqueda(busqueda: String) = retroService.librosPorBusqueda(busqueda).body()
+
+//    suspend fun librosPorBusqueda(busqueda: String) {
+//        Log.v("Pedido", retroService.librosPorBusqueda(busqueda).raw().toString())
+//        retroService.librosPorBusqueda(busqueda).body()
+//
+//    }
 
 
 }
