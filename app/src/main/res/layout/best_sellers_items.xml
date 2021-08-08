@@ -3,48 +3,64 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:elevation="25dp">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_row_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clipToPadding="true"
         app:cardBackgroundColor="#F9FDFF"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="10dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+
+        app:cardCornerRadius="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        >
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/card_book"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent">
+            android:layout_height="match_parent">
+
+            <!--                app:layout_constraintStart_toEndOf="@+id/imageViewBook"-->
+
+            <TextView
+                android:id="@+id/tvposicion_bs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:foregroundGravity="center"
+                android:text="1°"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textSize="44sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.164" />
 
             <ImageView
-                android:id="@+id/imageViewBook"
+                android:id="@+id/image_bestseller"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
+                android:layout_marginStart="4dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="3dp"
                 android:scaleType="fitCenter"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvposicion_bs"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
-                android:id="@+id/tvtitulo"
+                android:id="@+id/tvtitulo_bs"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:gravity="center"
                 android:text="TextView"
@@ -55,43 +71,27 @@
                 app:autoSizeTextType="uniform"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.451"
-                app:layout_constraintStart_toEndOf="@+id/imageViewBook"
+                app:layout_constraintHorizontal_bias="0.0"
+
+                app:layout_constraintStart_toEndOf="@+id/image_bestseller"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.338" />
+                app:layout_constraintVertical_bias="0.55" />
 
             <TextView
-                android:id="@+id/tvautor"
+                android:id="@+id/tvautor_bs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="TextView"
+                android:layout_marginStart="27dp"
+                android:layout_marginTop="16dp"
+                android:text="Autor"
                 android:textColor="#676666"
                 android:textSize="16sp"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.408"
-                app:layout_constraintStart_toEndOf="@+id/imageViewBook"
-                app:layout_constraintTop_toBottomOf="@+id/tvtitulo_bs" />
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/image_bestseller"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tvano"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="114dp"
-                android:layout_marginTop="28dp"
-                android:text="TextView"
-                android:textColor="#676666"
-                android:textSize="12sp"
-                android:textStyle="italic"
-                app:autoSizeTextType="uniform"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.089"
-                app:layout_constraintStart_toEndOf="@+id/imageViewBook"
-                app:layout_constraintTop_toBottomOf="@+id/tvautor"
-                app:layout_constraintVertical_bias="0.666" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

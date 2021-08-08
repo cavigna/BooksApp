@@ -18,6 +18,6 @@ data class Item(
     val searchInfo: SearchInfo,
     @SerializedName("selfLink")
     val selfLink: String,
-    @SerializedName("volumeInfo")
+    @SerializedName("libro")
     val volumeInfo: VolumeInfo
 )

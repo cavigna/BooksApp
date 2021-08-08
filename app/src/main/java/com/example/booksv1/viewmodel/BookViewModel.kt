@@ -82,40 +82,40 @@ suspend fun librosPorNombre(): LiveData<Response<BookModelJson>> =
 
 /*
     suspend fun librosPorNombre(): LiveData<Response<BookModelJson>> {
-        val libros = viewModelScope.launch {
+        val libro = viewModelScope.launch {
             withContext(Dispatchers.IO){
                  repository.librosPorNombre()
             }
 
         }
-        librosLiveData.postValue(libros)
+        librosLiveData.postValue(libro)
         return repository.librosPorNombre()
     }
  */
 
 /*
     suspend fun librosListado(palabra:String): MutableLiveData<Response<BookModelJson>>{
-        val libros = viewModelScope.launch {
+        val libro = viewModelScope.launch {
             withContext(Dispatchers.IO){
                 repository.librosPorNombre(palabra)
             }
 
         }
-        librosLiveData.postValue(libros)
+        librosLiveData.postValue(libro)
         return repository.librosPorNombre(palabra)
     }
  */
 
 /*
     suspend fun librosListado(palabra:String): MutableLiveData<Response<BookModelJson>>{
-        val libros = viewModelScope.launch {
+        val libro = viewModelScope.launch {
             withContext(Dispatchers.IO){
                 val response = repository.librosPorNombre(palabra)
                // response.value = librosLiveData
             }
 
         }
-        //librosLiveData.postValue(libros)
+        //librosLiveData.postValue(libro)
         return repository.librosPorNombre(palabra)
     }
  */

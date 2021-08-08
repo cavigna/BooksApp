@@ -8,7 +8,7 @@ data class ListadoLibros(
     @SerializedName("id")
     val id: String,
 
-    @SerializedName("volumeInfo")
+    @SerializedName("libro")
     val info: Books
 )
 

@@ -16,7 +16,7 @@ import com.example.booksv1.repository.BookRepository
 import com.example.booksv1.ui.adapters.BookAdapter
 import com.example.booksv1.viewmodel.BookViewModel
 import com.example.booksv1.viewmodel.LibroAdapter
-import com.example.booksv1.viewmodel.LibroAdapter2
+import com.example.booksv1.ui.adapters.LibroAdapter2
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -181,8 +181,8 @@ class MainActivity : AppCompatActivity() {
             val data = response.body()!!
 
             if (response.isSuccessful){
-                Log.v("Libros", response.body().toString())
-                binding.tvprueba.text = data.items.get(0).volumeInfo.title
+                Log.v("Libro", response.body().toString())
+                binding.tvprueba.text = data.items.get(0).libro.title
 
             }
         }
@@ -202,9 +202,9 @@ class MainActivity : AppCompatActivity() {
 //            val data = response.body()!!
 //
 //            if (response.isSuccessful){
-//                //Log.v("Libros", response.body().toString())
+//                //Log.v("Libro", response.body().toString())
 //                Log.v("Pedido", response.raw().toString())
-//                binding.tvprueba.text = data.items.get(0).volumeInfo.title
+//                binding.tvprueba.text = data.items.get(0).libro.title
 //                recyclerInit(data)
 //
 //            }
@@ -229,7 +229,7 @@ viewModel.librosLiveData.observe(this){
             val data = response.body()!!
 
             if(response.isSuccessful){
-                Log.v("Libros", response.body().toString())
+                Log.v("Libro", response.body().toString())
             }
         }
     }

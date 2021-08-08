@@ -3,7 +3,7 @@ package com.example.booksv1.jsonmodels.modelshort
 import com.google.gson.annotations.SerializedName
 
 data class OtroMas(
-    @SerializedName("volumeInfo")
+    @SerializedName("libro")
     val info: Books2,
 
     @SerializedName("items")

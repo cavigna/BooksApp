@@ -5,12 +5,14 @@
       <map>
         <entry key="..\:/Proyectos_Android/BookApp/app/src/main/res/layout/activity_detalles.xml" value="0.3691123188405797" />
         <entry key="..\:/Proyectos_Android/BookApp/app/src/main/res/layout/activity_main.xml" value="0.33783783783783783" />
-        <entry key="..\:/Proyectos_Android/BookApp/app/src/main/res/layout/activity_ny.xml" value="0.5" />
+        <entry key="..\:/Proyectos_Android/BookApp/app/src/main/res/layout/activity_ny.xml" value="0.2388888888888889" />
         <entry key="..\:/Proyectos_Android/BookApp/app/src/main/res/layout/activity_prueba.xml" value="0.19101123595505617" />
+        <entry key="..\:/Proyectos_Android/BookApp/app/src/main/res/layout/best_sellers_items.xml" value="0.33" />
         <entry key="..\:/Proyectos_Android/BookApp/app/src/main/res/layout/fragment_details.xml" value="0.3691123188405797" />
         <entry key="..\:/Proyectos_Android/BookApp/app/src/main/res/layout/fragment_home.xml" value="0.21197916666666666" />
         <entry key="..\:/Proyectos_Android/BookApp/app/src/main/res/layout/fragment_notifications.xml" value="0.21197916666666666" />
-        <entry key="..\:/Proyectos_Android/BookApp/app/src/main/res/layout/row_item.xml" value="0.5" />
+        <entry key="..\:/Proyectos_Android/BookApp/app/src/main/res/layout/fragment_search.xml" value="0.30885416666666665" />
+        <entry key="..\:/Proyectos_Android/BookApp/app/src/main/res/layout/row_item.xml" value="0.2607003891050584" />
       </map>
     </option>
   </component>

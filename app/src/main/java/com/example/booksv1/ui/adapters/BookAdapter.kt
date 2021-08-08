@@ -38,7 +38,7 @@ class BookAdapter(var books: BookJson) : RecyclerView.Adapter<BookViewHolder>() 
             try {
                 tvtitulo.text = books.items[position].volumeInfo.title
                 tvautor.text = autores[0]
-                tvaO.text = books.items[position].volumeInfo.publishedDate
+                tvano.text = books.items[position].volumeInfo.publishedDate
 
                 Glide.with(imageViewBook.context)
                     .load(books.items[position].volumeInfo.imageLinks.thumbnail)
@@ -50,7 +50,7 @@ class BookAdapter(var books: BookJson) : RecyclerView.Adapter<BookViewHolder>() 
             }catch (e: NullPointerException){
                 tvtitulo.text = "No Info"
                 tvautor.text = "No Info"
-                tvaO.text = "No Info"
+                tvano.text = "No Info"
                 imageViewBook.setImageResource(R.drawable.noimage)
 
             }

@@ -5,14 +5,24 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
+    const val  BASE_URL = "https://www.googleapis.com/books/v1/"
+
 
     val retroService: RetroService by lazy {
         Retrofit.Builder()
-            .baseUrl(Credenciales.BASE_URL) // ==>https://www.googleapis.com/books/
+            .baseUrl(BASE_URL) // ==>https://www.googleapis.com/books/
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(RetroService::class.java)
     }
+
+//    val retroServiceNy: RetroService by lazy{
+//        Retrofit.Builder()
+//            .baseUrl("https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=3hSD1cqOAunEXXGwHGAdzJGojIR89OEB")
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .build()
+//            .create(RetroService:: class.java)
+//    }
 }
 
 

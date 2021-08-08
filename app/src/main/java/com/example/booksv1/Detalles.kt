@@ -39,7 +39,7 @@ class Detalles : AppCompatActivity() {
 /*
 try {
                 Glide.with(imageViewBook.context)
-                    .load(books.items[position].volumeInfo.imageLinks.thumbnail)
+                    .load(books.items[position].libro.imageLinks.thumbnail)
                     .fitCenter()
                     .error(R.drawable.ic_launcher_foreground)
                     .into(imageViewBook)

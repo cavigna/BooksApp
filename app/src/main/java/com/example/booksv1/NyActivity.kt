@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.booksv1.databinding.ActivityNyBinding
 import com.example.booksv1.repository.BookRepository
 import com.example.booksv1.retrofit.RetrofitInstance
-import com.example.booksv1.ui.adapters.BestSellersAdapter
+import com.example.booksv1.ui.home.BestSellersAdapter
 import com.example.booksv1.viewmodel.BookViewModel
 
 class NyActivity : AppCompatActivity() {

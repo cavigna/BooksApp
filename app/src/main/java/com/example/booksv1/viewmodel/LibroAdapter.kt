@@ -3,8 +3,6 @@ package com.example.booksv1.viewmodel
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.Glide
@@ -17,13 +15,13 @@ import java.lang.NullPointerException
 
     init {
         libros2.observe(lifecycleOwner){
-            libros = libros2.value
+            libro = libros2.value
         }
     }
  */
 //class LibroAdapter( libros2: LiveData<BookModelJson?>, val lifecycleOwner: LifecycleOwner): ListAdapter<BookModelJson, BookViewHolder>(DiffUtilCallback) {
 //class LibroAdapter( libros2: LiveData<BookModelJson?>): ListAdapter<BookModelJson, BookViewHolder>(DiffUtilCallback) {
-//class LibroAdapter(private var libros: BookModelJson?)
+//class LibroAdapter(private var libro: BookModelJson?)
 class LibroAdapter( libros2: BookModelJson?): ListAdapter<BookModelJson, BookViewHolder>(DiffUtilCallback) {
     private var libros :BookModelJson? = libros2!!
 
@@ -59,7 +57,7 @@ class LibroAdapter( libros2: BookModelJson?): ListAdapter<BookModelJson, BookVie
                 } catch (e: NullPointerException) {
                     tvtitulo.text = "No Info"
                     tvautor.text = "No Info"
-                    tvaO.text = "No Info"
+                    tvano.text = "No Info"
                     imageViewBook.setImageResource(R.drawable.noimage)
 
                 }
@@ -87,11 +85,11 @@ class LibroAdapter( libros2: BookModelJson?): ListAdapter<BookModelJson, BookVie
                 //holder.binding.imageViewBook.context.startActivity()
                 val context =holder.binding.imageViewBook.context
                 val intento = Intent(context, Detalles::class.java)
-                intento.putExtra("detalle",books.items[position].volumeInfo.description )
-                intento.putExtra("imagen", books.items[position].volumeInfo.imageLinks.thumbnail)
-                intento.putExtra("autor", books.items[position].volumeInfo.authors[0])
-                intento.putExtra("year", books.items[position].volumeInfo.publishedDate)
-                intento.putExtra("titulo", books.items[position].volumeInfo.title)
+                intento.putExtra("detalle",books.items[position].libro.description )
+                intento.putExtra("imagen", books.items[position].libro.imageLinks.thumbnail)
+                intento.putExtra("autor", books.items[position].libro.authors[0])
+                intento.putExtra("year", books.items[position].libro.publishedDate)
+                intento.putExtra("titulo", books.items[position].libro.title)
                 context.startActivity(intento)
             }
 

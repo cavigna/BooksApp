@@ -1,4 +1,4 @@
-package com.example.booksv1.viewmodel
+package com.example.booksv1.ui.adapters
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -33,7 +33,7 @@ class LibroAdapter2(var libros:BookModelJson): RecyclerView.Adapter<BookViewHold
                 val image = libros.listado[position].info.linksImagenes.thumbnail
                 tvtitulo.text = title
                 tvautor.text = authors[0]
-                tvaO.text = libros.listado[position].info.publishedDate
+                tvano.text = libros.listado[position].info.publishedDate
                 Glide.with(imageViewBook.context)
                     .load(image)
                     .fitCenter()
@@ -41,7 +41,7 @@ class LibroAdapter2(var libros:BookModelJson): RecyclerView.Adapter<BookViewHold
             } catch (e: NullPointerException) {
                 tvtitulo.text = "No Info"
                 tvautor.text = "No Info"
-                tvaO.text = "No Info"
+                tvano.text = "No Info"
                 imageViewBook.setImageResource(R.drawable.noimage)
 
             }
