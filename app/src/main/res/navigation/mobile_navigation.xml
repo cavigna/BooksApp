@@ -9,17 +9,40 @@
         android:id="@+id/navigation_home"
         android:name="com.example.booksv1.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_details"
+            app:destination="@id/details"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.example.booksv1.ui.search.SearchFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_details"
+            app:destination="@id/details" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.booksv1.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/details"
+        android:name="com.example.booksv1.ui.details.Details"
+        android:label="details_fragment"
+        tools:layout="@layout/details_fragment" >
+        <argument android:name="imagen" />
+        <argument android:name="titulo" />
+        <argument android:name="autor" />
+        <argument android:name="descripcion" />
+        <action
+            android:id="@+id/action_details_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
 </navigation>

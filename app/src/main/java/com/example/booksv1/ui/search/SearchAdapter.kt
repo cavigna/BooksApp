@@ -3,6 +3,7 @@ package com.example.booksv1.ui.search
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.booksv1.R
@@ -26,9 +27,10 @@ class SearchAdapter(libroModelJson : LibroModelJson) : RecyclerView.Adapter<Sear
     }
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
+        val libroAcutal =libros[position].libro
         holder.binding.apply {
             try {
-                val libroAcutal =libros[position].libro
+
                 tvtitulo.text = libroAcutal.title
                 tvautor.text = libroAcutal.authors[0]
                 tvano.text = libroAcutal.publishedDate
@@ -45,6 +47,17 @@ class SearchAdapter(libroModelJson : LibroModelJson) : RecyclerView.Adapter<Sear
                 imageViewBook.setImageResource(R.drawable.noimage)
 
             }
+        }
+
+        holder.binding.cardRowItem.setOnClickListener {
+            val action = SearchFragmentDirections.actionNavigationDashboardToDetails(
+                libroAcutal.imageLinks.thumbnail,
+                libroAcutal.title,
+                libroAcutal.authors[0],
+                libroAcutal.description
+
+            )
+            holder.itemView.findNavController().navigate(action)
         }
     }
 

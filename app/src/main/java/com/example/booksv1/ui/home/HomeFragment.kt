@@ -11,6 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.booksv1.databinding.FragmentHomeBinding
+import com.example.booksv1.db.LibroDao
+import com.example.booksv1.db.LibrosDB
 import com.example.booksv1.repository.BookRepository
 import com.example.booksv1.retrofit.RetrofitInstance
 
@@ -25,6 +27,7 @@ private var _binding: FragmentHomeBinding? = null
   // *************** //
 
   private lateinit var repository: BookRepository
+//  private val libroDao = LibrosDB.getDataBase(this).libroDao()
 
   override fun onCreateView(
     inflater: LayoutInflater,
@@ -69,6 +72,8 @@ private fun bestSellers(){
     recycler.apply {
       layoutManager =  LinearLayoutManager(context)
       adapter = BestSellersAdapter(homeViewModel.bestSellersLiveData.value!!)
+
+
     }
   }
 
