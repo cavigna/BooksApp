@@ -1,5 +1,6 @@
 package com.example.booksv1.db
 
+import android.graphics.Bitmap
 import android.icu.text.CaseMap
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -13,10 +14,7 @@ data class LibroEntity(
     val autor : String,
     val fecha: String,
     val descripcion : String,
+    val imagen : Bitmap,
     val urlLink: String
-
-
-
-
 
     )

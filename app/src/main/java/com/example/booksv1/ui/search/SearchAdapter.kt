@@ -1,6 +1,7 @@
 package com.example.booksv1.ui.search
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.navigation.findNavController
@@ -41,6 +42,7 @@ class SearchAdapter(libroModelJson : LibroModelJson) : RecyclerView.Adapter<Sear
 
             }catch (e: NullPointerException){
                 cardRowItem.isVisible = false
+                cardRowItem.visibility = View.GONE
                 tvtitulo.text = "No Info"
                 tvautor.text = "No Info"
                 tvano.text = "No Info"

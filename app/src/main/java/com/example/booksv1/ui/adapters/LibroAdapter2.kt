@@ -26,12 +26,19 @@ class LibroAdapter2(var libros:BookModelJson): RecyclerView.Adapter<BookViewHold
     }
 
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
+
+        var title :String
+        var authors :String
+        var image : String
+        var descripcion : String
+
         holder.binding.apply {
             try {
                 val title = libros.listado[position].info.title
                 val authors = libros.listado[position].info.authors
                 val image = libros.listado[position].info.linksImagenes.thumbnail
-                tvtitulo.text = title
+
+                tvtitulo.text = libros.listado[position].info.title
                 tvautor.text = authors[0]
                 tvano.text = libros.listado[position].info.publishedDate
                 Glide.with(imageViewBook.context)
@@ -39,10 +46,14 @@ class LibroAdapter2(var libros:BookModelJson): RecyclerView.Adapter<BookViewHold
                     .fitCenter()
                     .into(imageViewBook)
             } catch (e: NullPointerException) {
-                tvtitulo.text = "No Info"
+                val title = "Sin titulo"
+
+                tvtitulo.text = title
                 tvautor.text = "No Info"
                 tvano.text = "No Info"
                 imageViewBook.setImageResource(R.drawable.noimage)
+
+
 
             }
 
@@ -72,5 +83,22 @@ class LibroAdapter2(var libros:BookModelJson): RecyclerView.Adapter<BookViewHold
 
     override fun getItemCount(): Int {
         return  libros.listado.size
+    }
+
+
+    private fun leo(){
+
+        try {
+
+            var titulo = libros.listado[0].info.title
+        }catch (e: NullPointerException){
+            var titulo = "Lo que sea"
+        }
+
+
+
+
+
+
     }
 }

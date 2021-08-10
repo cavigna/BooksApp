@@ -1,5 +1,6 @@
 package com.example.booksv1.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -27,7 +28,7 @@ private var _binding: FragmentHomeBinding? = null
   // *************** //
 
   private lateinit var repository: BookRepository
-//  private val libroDao = LibrosDB.getDataBase(this).libroDao()
+  //private val libroDao = LibrosDB.getDataBase(Context().applicationContext).libroDao()
 
   override fun onCreateView(
     inflater: LayoutInflater,

@@ -6,7 +6,7 @@ import androidx.room.*
 @Dao
 interface LibroDao {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun agregarLibro(libro: LibroEntity)
 
     @Delete
@@ -17,6 +17,8 @@ interface LibroDao {
 
     @Query("SELECT * FROM favoritos")
      fun selectAll() : LiveData<List<LibroEntity>>
+
+
 
 
 
