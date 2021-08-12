@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.booksv1.ui.notifications.NotificationsFragment"
+        android:name="com.example.booksv1.ui.favorites.FavoritesFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
     <fragment
@@ -44,5 +44,7 @@
         <action
             android:id="@+id/action_details_to_navigation_home"
             app:destination="@id/navigation_home" />
+        <argument android:name="urlLinks" />
+        <argument android:name="fehca" />
     </fragment>
 </navigation>

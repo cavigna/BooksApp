@@ -13,7 +13,7 @@ import com.example.booksv1.jsonmodels.modelshort.BookModelJson
 import java.lang.NullPointerException
 
 class LibroAdapter2(var libros:BookModelJson): RecyclerView.Adapter<BookViewHolder>() {
-
+    val pepe = libros.listado.filterNotNull()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
         return BookViewHolder(

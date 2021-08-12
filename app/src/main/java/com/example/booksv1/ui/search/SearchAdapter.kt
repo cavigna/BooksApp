@@ -56,7 +56,9 @@ class SearchAdapter(libroModelJson : LibroModelJson) : RecyclerView.Adapter<Sear
                 libroAcutal.imageLinks.thumbnail,
                 libroAcutal.title,
                 libroAcutal.authors[0],
-                libroAcutal.description
+                libroAcutal.description,
+                libroAcutal.canonicalVolumeLink,
+                libroAcutal.publishedDate
 
             )
             holder.itemView.findNavController().navigate(action)

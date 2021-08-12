@@ -32,6 +32,8 @@ class BestSellersAdapter(bookNYModel: BookNYModel) : RecyclerView.Adapter<HomeVi
         val imagen = currentBook.bookImage
         val autor = currentBook.author
         val descripcion = currentBook.description
+        val url = currentBook.buyLinks[0].url
+        val fecha = "No Info"
 
         holder.binding.apply {
 
@@ -48,7 +50,7 @@ class BestSellersAdapter(bookNYModel: BookNYModel) : RecyclerView.Adapter<HomeVi
         holder.binding.cardBestSeller.setOnClickListener {
             val action = HomeFragmentDirections
                 .actionNavigationHomeToDetails(imagen,
-                    titulo, autor, descripcion)
+                    titulo, autor, descripcion, url, fecha)
             holder.itemView.findNavController().navigate(action)
         }
 
